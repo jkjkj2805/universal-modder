@@ -103,6 +103,13 @@ Other useful endpoints:
   sounds.
 
 ## Cost and etiquette
+- **Authorize bounded paid work before execution.** Confirm the service, allowed
+  inputs, operation, maximum request count and spend cap (or an explicitly
+  accepted price estimate) before a paid call or external input upload. Existing
+  explicit approval covers only that scope; do not ask again for each approved
+  request. A key, MCP configuration or general mod request is not a spending budget.
+  Track the remaining budget. Stop on its limit or an uncertain paid result;
+  investigate the existing request before retrying. No unapproved paid fallback.
 - **Price the expensive stuff:** before batching 3D, video or long music, check the price
   (`um fal price <endpoint>` / MCP `get_pricing`). For more than about 20 generations or anything
   video-sized, tell the user the rough cost first.
