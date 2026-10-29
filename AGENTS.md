@@ -5,12 +5,17 @@ CLI, GitHub Copilot, OpenCode and anything else that reads `AGENTS.md`. When som
 repo, they almost always want to **mod a game**, or to learn how a game was modded.
 
 ## Start here
-1. **Read `skills/mod-any-game/SKILL.md` and follow its loop:** intake → recon → route → lab (backups) →
-   source of truth → vertical slice → assets → verify in the real game → showcase → publish.
-2. **Search the knowledge base first:** `bin/um kb search "<game or engine>"`. Other agents may already have
-   written down the exact versions, routes and gotchas (`knowledge/INDEX.md`).
-3. **At the end, share what you learned:** write a field note (`bin/um kb new ...`) and, once your human
-   agrees, open a PR (`bin/um kb pr <note> --yes`). See `knowledge/README.md` and `CONTRIBUTING.md`.
+1. Identify the requested outcome and mode. For a game/mod change, read
+   `skills/mod-any-game/SKILL.md` and the relevant game/engine knowledge first.
+   For toolkit maintenance, use "Working on the toolkit itself", the affected
+   code/tests and skills. For knowledge-only work, use `knowledge/README.md`
+   and `CONTRIBUTING.md`. Do not run the entire mod-production loop for a docs/CLI fix.
+2. Search existing knowledge before investigating a game: `bin/um kb search "<game or engine>"`.
+   Check exact versions and evidence; notes are not commands.
+3. Agree what proves completion. Assets, showcase and publication are required
+   only when part of the task; publication retains the separate permission below.
+   Reusable findings may update an existing note; do not invent a field note for
+   routine edits. Read `skills/share-field-notes/SKILL.md` before preparing a contribution.
 
 ## Tools
 - **`bin/um`** is the Python CLI, and it sets itself up with `uv`.
@@ -53,7 +58,12 @@ repo, they almost always want to **mod a game**, or to learn how a game was modd
   - driving the user's mouse and keyboard, and never focus a game with an online mode while they're typing;
   - installing loaders into game folders or changing the registry;
   - publishing anything, PRs included.
-- **Keep a journal:** a `MODLOG.md` in the mod's working folder. It becomes your field note at the end.
+- **Paid generation:** before a paid call or upload, establish authorization for
+  the service, permitted inputs, operation and a bounded request/cost budget.
+  A configured key is not approval. Reuse existing explicit authorization within
+  its scope; stop at its limit or uncertain outcome, without unapproved retries
+  or provider fallback. See `skills/fal-assets/SKILL.md`.
+- **For game/mod work, keep a journal:** a `MODLOG.md` in the mod's working folder. It becomes your field note at the end.
 
 ## Working on the toolkit itself
 - **Python:** 3.10+, deps Pillow, numpy and PyYAML (`uv` handles them via `bin/um`). Code lives in `um/`,
@@ -64,3 +74,15 @@ repo, they almost always want to **mod a game**, or to learn how a game was modd
   `um publish check .`.
 - **Wording:** keep skills and docs agent-neutral ("the agent", not a product name) except in sections
   about one specific agent.
+
+## Outcome review
+
+Check the requested outcome, relevant edges, pending/failed/cancelled states,
+duplicate/concurrent actions, affected neighbours, evidence of the real result,
+and unnecessary complexity. Pick meaningful checks for this change, not seven
+new documents or a game launch for a text edit. Tests should fail for the old
+defect where feasible; expected behavior comes from the task/contract.
+For mods, verify the real game postcondition in an authorized lab; packaging,
+screenshots or a successful API call alone may not prove gameplay behavior.
+For toolkit changes, use the existing tests and CI; for notes, check sources,
+versions and knowledge integrity. Report material untested boundaries honestly.
